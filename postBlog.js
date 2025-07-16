@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     img.src = imageFile;
 
     if (!title || !content) {
-      // Removed author check since it's disabled
+      // Removed author check since it's disabled,
       alert("Please fill in all required fields.");
       return;
     }
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       id: Date.now(),
       title,
       content,
-      imageFile: imageFile || null, // Store the File object directly
+      imageFile: imageFile || null, 
       author,
       createdAt: Date.now(),
     };
@@ -80,9 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Render immediately
     renderPost(newPost);
 
-    // Reset form
     postForm.reset();
-    authorInput.value = loggedInUser.username; // Reset author after form reset
+    authorInput.value = loggedInUser.username; 
   });
 
   // Load existing posts on page load
