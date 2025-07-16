@@ -12,13 +12,13 @@
     margin-bottom: 30px;
 }
 
-
 #post-form {
     text-align: center;
     justify-items: center;
     justify-content: center;
     position: relative;
     top: 50px;
+
 }
 
 #post-image {
@@ -26,6 +26,9 @@
     box-shadow: 3px 3px 5px 5px rgb(0, 0, 0, 0.3);
     padding: 20px;
     border-radius: 10px;
+
+
+
 }
 
 .input-text {
@@ -78,4 +81,19 @@
 
 #post:hover {
     background-color: rgb(62, 62, 184);
+}
+
+#postList {
+    display: flex;
+    flex-wrap: wrap;
+    text-transform: capitalize;
+    margin: 20px;
+background-color: aqua;
+
+}
+
+.post-meta {
+    color: blue;
+    text-transform: capitalize;
+    margin: 20px;
 }
