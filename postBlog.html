@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="blog.css" />
+    <title>login blog</title>
+    <link rel="stylesheet" href="postBlog.css" />
+  </head>
+  <body>
+    <div id="post-form">
+      <form action="" id="post-image">
+        <h2 id="heading-title">create blog post</h2>
+
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Title"
+          class="input-text"
+          required
+        /><br />
+        <textarea
+          name="description"
+          id="description"
+          placeholder="Content"
+          class="input-text"
+          required
+        ></textarea
+        ><br />
+        <input
+          type="text"
+          id="imageInput"
+          name="image"
+          placeholder="image url"
+          class="input-text"
+          accept="image/*"
+        />
+        <input
+          type="text"
+          name="name"
+          id="author"
+          placeholder="Author"
+          class="input-text"
+          required
+        /><br />
+        <button type="submit" id="post">post</button>
+      </form>
+      <h2>my recent post blog</h2>
+      <div id="postList" class="posts"></div>
+    </div>
+    <script src="postBlog.js"></script>
+  </body>
+</html>
