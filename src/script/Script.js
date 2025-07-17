@@ -1,5 +1,4 @@
-
-const userName = document.getElementById("UserName")
+const userName = document.getElementById("UserName");
 function loginUser(event) {
   event.preventDefault();
   const username = document.getElementById("login-username").value.trim();
@@ -22,9 +21,11 @@ function loginUser(event) {
   msg.style.color = "green";
 
   setTimeout(() => {
-    if (foundUser.role === 'admin') {
-      window.location.href = 'AdminDashboard.html';
-      userName.innerHTML = foundUser.username
+    if (foundUser.role === "admin") {
+       alert(foundUser.username)
+      window.location.href = "/src/pages/AdminBlog.html";
+     
+      // userName.innerHTML = foundUser.username;
     } else {
       window.location.href = "/src/pages/postBlog.html";
     }
