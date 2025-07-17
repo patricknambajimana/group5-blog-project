@@ -1,31 +1,4 @@
 
-function registerUser(event) {
-  event.preventDefault();
-  const username = document.getElementById('reg-username').value.trim();
-  const password = document.getElementById('reg-password').value.trim();
-  const role = document.getElementById('reg-role').value;
-  const msg = document.getElementById('reg-msg');
-
-  const users = JSON.parse(localStorage.getItem('users')) || [];
-
-  if (users.some(u => u.username === username)) {
-    msg.textContent = 'Username already exists';
-    msg.style.color = 'red';
-    return;
-  }
-
-  const newUser = { id: Date.now(), username, password, role };
-  users.push(newUser);
-  localStorage.setItem('users', JSON.stringify(users));
-
-  msg.textContent = 'Registered successfully! Redirecting to login...';
-  msg.style.color = 'green';
-
-  setTimeout(() => {
-    window.location.href = 'Login.html';
-  }, 1500);
-}
-
 function loginUser(event) {
   event.preventDefault();
   const username = document.getElementById('login-username').value.trim();
