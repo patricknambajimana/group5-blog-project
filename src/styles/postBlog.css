@@ -31,7 +31,8 @@
 
 }
 
-.input-text {
+.input-text {    margin-bottom:400px;
+
     padding: 10px;
     border-radius: 10px;
     width: 100%;
