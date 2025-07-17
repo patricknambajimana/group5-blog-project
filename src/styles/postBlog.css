@@ -104,15 +104,29 @@
     padding: 10px;
 
 }
-#recent
-{
+
+#recent {
     text-transform: capitalize;
     margin-top: 20px;
     font-size: 30px;
     right: 500px;
     position: relative;
 }
-.post{
- width: 400px;
- 
+
+.post {
+    width: 400px;
+
+}
+
+#logout-button {
+    position: relative;
+    right: 0;
+    margin: 30px;
+    padding: 20px;
+    width: 200px;
+    font-size: 30px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: blue;
+
 }
