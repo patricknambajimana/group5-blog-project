@@ -156,3 +156,12 @@ th {
   align-items: center;
   gap: 15px;
 }
+
+.readMore{
+  color: var(--primary-color);
+  font-weight: 100;
+  text-decoration: underline;
+}
+
+/* search feature */
+
