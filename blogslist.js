@@ -10,17 +10,19 @@ const form = document.getElementById('blogForm');
   let editIndex = null;
 
   function renderBlogs() {
-    blogList.innerHTML = '';
+    postList.innerHTML = '';
 
     blogs.forEach((blog, index) => {
       const blogDisplay = document.createElement('div');
       blogDisplay.className = 'blog';
       blogDisplay.innerHTML = `
-        <h3>${blog.title}</h3>
-        <p><strong>Author:</strong> ${blog.author} | <strong>Date:</strong> ${blog.date}</p>
-        <img src="${blog.image || ''}" alt="Blog Image" style="max-width: 200px; display: ${blog.image ? 'block' : 'none'};">
-        <p>${blog.description}</p>
-        <div class="actions-buttons">
+        // <h3>${blog.title}</h3>
+        // <p><strong>Author:</strong> ${blog.author} | <strong>Date:</strong> ${blog.date}</p>
+        // <img src="${blog.image || ''}" alt="Blog Image" style="max-width: 200px; display: ${blog.image ? 'block' : 'none'};">
+        // <p>${blog.description}</p>
+
+
+        <div id ="actions-buttons">
           <button onclick="editBlog(${index})">Edit</button>
           <button onclick="deleteBlog(${index})">Delete</button>
         </div>
