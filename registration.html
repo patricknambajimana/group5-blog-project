@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration-form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="register">
+      <h1 id="header">Register</h1>
+      <form action="registration" id="registration-form">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="reg-username"
+          placeholder="Enter your names"
+          required
+        />
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="reg-password"
+          placeholder="Enter your password "
+          required
+        />
+        <label for="password">Confirm Password</label>
+        <input
+          type="password"
+          id="reg-confirm-password"
+          placeholder="confirm password"
+          required
+        />
+        <label for="role">Role</label>
+        <select name="role" id="reg-role">
+          <option value="" disabled selected hidden></option>
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+        </select>
+      </form>
+      <div class="btn">
+        <button id="register-btn">Register</button>
+        <p>
+          Already have an account?
+          <a href="login.html"><span id="login-forget">Login</span></a>
+        </p>
+      </div>
+    </div>
+  </body>
+  <script src="localstorage.js"></script>
+</html>
