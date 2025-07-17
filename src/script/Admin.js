@@ -56,3 +56,18 @@ const renderBlogs = () => {
   });
 };
 renderBlogs();
+
+const registeredUsers = JSON.parse(localStorage.getItem('users'))
+const users = Array.isArray(registeredUsers)||[]
+
+alert(users.username)
+
+const displayUsers = ()=>{
+  const userName = document.getElementById("uName")
+  const role = document.getElementById("role")||[]
+
+  users.map(user=>{
+    userName.innerHTML = user.username
+    role.innerHTML = user.role
+  })
+}
