@@ -1,100 +1,86 @@
-const form = document.getElementById('blogForm');
-  const title = document.getElementById('title');
-  const description = document.getElementById('description');
-  const imageInput = document.getElementById('imageInput');
-  const author = document.getElementById('author');
-  const date = document.getElementById('date');
-  const blogList = document.getElementById('blogList');
+document.addEventListener("DOMContentLoaded", () => {
+  const postList = document.getElementById("postList");
+  const titleInput = document.getElementById("title");
+  const descriptionInput = document.getElementById("description");
+  const imageInput = document.getElementById("imageInput");
+  const authorInput = document.getElementById("author");
+  const postForm = document.getElementById("post-image");
 
-  let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+  let posts = JSON.parse(localStorage.getItem("posts")) || [];
   let editIndex = null;
 
-  function renderBlogs() {
-    postList.innerHTML = '';
+  window.renderPosts = function () {
+    posts = JSON.parse(localStorage.getItem("posts")) || [];
+    postList.innerHTML = "";
 
-    blogs.forEach((blog, index) => {
-      const blogDisplay = document.createElement('div');
-      blogDisplay.className = 'blog';
-      blogDisplay.innerHTML = `
-   
+    posts
+      .slice()
+      .reverse()
+      .forEach((post, index) => {
+        const postDiv = document.createElement("div");
+        postDiv.className = "post";
+        postDiv.innerHTML = `
+          <h3>${post.title}</h3>
+          <p>${post.content}</p>
+          ${
+            post.imageUrl
+              ? `<a href="${post.imageUrl}" target="_blank"><img src="${post.imageUrl}" alt="Post image" class="postimage"></a>`
+              : ""
+          }
+          <div class="post-meta">
+            <span>By ${post.author}</span>
+            <strong>${new Date(post.createdAt).toLocaleString()}</strong>
+          </div>
+          <div class="actions">
+            <button onclick="editPost(${posts.length - 1 - index})">Edit</button>
+            <button onclick="deletePost(${posts.length - 1 - index})">Delete</button>
+          </div>
+        `;
+        postList.appendChild(postDiv);
+      });
+  };
 
-        
+  window.deletePost = function (index) {
+    posts.splice(index, 1);
+    localStorage.setItem("posts", JSON.stringify(posts));
+    renderPosts();
+  };
 
-        <div id ="actions-buttons">
-          <button onclick="editBlog(${index})">Edit</button>
-          <button onclick="deleteBlog(${index})">Delete</button>
-        </div>
-      `;
-      blogList.appendChild(blogDisplay);
-    });
-  }
-
-  function resetForm() {
-    form.reset();
-    editIndex = null;
-  }
-
-  function saveBlogs() {
-    localStorage.setItem('blogs', JSON.stringify(blogs));
-  }
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const blog = {
-      title: title.value.trim(),
-      description: description.value.trim(),
-      image: '', 
-      author: author.value.trim(),
-      date: date.value,
-    };
-
-    const file = imageInput.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        blog.image = reader.result;
-
-        if (editIndex !== null) {
-          blogs[editIndex] = blog;
-        } else {
-          blogs.push(blog);
-        }
-
-        saveBlogs();
-        renderBlogs();
-        resetForm();
-      };
-      reader.readAsDataURL(file);
-    } else {
-      if (editIndex !== null) {
-        blogs[editIndex] = blog;
-      } else {
-        blogs.push(blog);
-      }
-      saveBlogs();
-      renderBlogs();
-      resetForm();
-    }
-  });
-
-  window.editBlog = function (index) {
-    const blog = blogs[index];
-    title.value = blog.title;
-    description.value = blog.description;
-    author.value = blog.author;
-    date.value = blog.date;
+  window.editPost = function (index) {
+    const post = posts[index];
+    titleInput.value = post.title;
+    descriptionInput.value = post.content;
+    imageInput.value = post.imageUrl || "";
+    authorInput.value = post.author;
     editIndex = index;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Scroll up to the form
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Override submit behavior for edit
+    postForm.onsubmit = function (e) {
+      e.preventDefault();
+
+      post.title = titleInput.value.trim();
+      post.content = descriptionInput.value.trim();
+      post.imageUrl = imageInput.value.trim();
+      post.author = authorInput.value.trim();
+      post.createdAt = Date.now();
+
+      posts[index] = post;
+      localStorage.setItem("posts", JSON.stringify(posts));
+
+      renderPosts();
+
+      postForm.reset();
+      authorInput.value = post.author;
+      editIndex = null;
+
+      // Restore normal post submit behavior
+      postForm.onsubmit = null;
+    };
   };
 
-  window.deleteBlog = function (index) {
-    if (confirm('Are you sure you want to delete this blog?')) {
-      blogs.splice(index, 1);
-      saveBlogs();
-      renderBlogs();
-    }
-  };
-
-  // Initial load
-  renderBlogs();
+  // Initial render
+  renderPosts();
+});
