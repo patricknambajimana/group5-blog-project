@@ -26,7 +26,7 @@ function nav() {
                 <div class="name-Abbrev">
                     <h2>TH</h2>
                 </div>
-                <a href="./src/pages/Login.html">Logout</a>
+                <a href="/src/pages/Login.html">Logout</a>
             </div>`;
 }
 nav();
