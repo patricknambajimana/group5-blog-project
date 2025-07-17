@@ -19,9 +19,9 @@ function loginUser(event) {
 
   setTimeout(() => {
     if (foundUser.role === 'admin') {
-      window.location.href = 'AdminDashboard.html';
+      window.location.href = '/src/pages/Admin.html';
     } else {
-      window.location.href = 'AuthorDashboard.html';
+      window.location.href = '/src/pages/postBlog.html';
     }
   }, 1500);
 }
