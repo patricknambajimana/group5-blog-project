@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const imageInput = document.getElementById("imageInput");
   const authorInput = document.getElementById("author");
   const postList = document.getElementById("postList");
-
+const name = document.getElementById("authorname")
+name.innerHTML=loggedInUser.username;
   // Get loggedInUser or set default
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {
     username: "GuestAuthor",
