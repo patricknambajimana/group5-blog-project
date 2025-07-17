@@ -134,3 +134,15 @@ body {
 #login-forget:hover {
   color: #8687ee;
 }
+.error-message {
+  color: red;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+input.error,
+select.error {
+  border: 1px solid red;
+}
