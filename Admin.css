@@ -9,20 +9,23 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+/* registered users page styles */
 a {
   color: white;
   font-weight: 600;
   font-size: 20px;
   text-decoration: none;
 }
-a:hover{
- color: orange;
- transition: .5s;
+a:hover {
+  color: orange;
+  transition: 0.5s;
 }
 #Admin-hero-page {
   width: 100%;
   min-height: 100vh;
   display: flex;
+  position: relative;
 }
 
 .nav {
@@ -31,6 +34,8 @@ a:hover{
   flex-direction: column;
   gap: 25px;
   padding: 20px;
+  height: 100vh;
+  position: fixed;
 }
 
 .nav ul {
@@ -67,8 +72,8 @@ a:hover{
 }
 
 .admin-dashboard {
-
-  width: 100%;
+  width: 90%;
+  margin-left: auto;
   padding: 20px 5%;
   display: flex;
   align-items: center;
@@ -100,12 +105,54 @@ th {
   border: 1px solid var(--tertialy-color);
   padding: 5px;
 }
-.Actions{
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: flex-end;
+.Actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
 }
-.Actions button{
-    padding: 3px 12px;
+.Actions button {
+  padding: 3px 12px;
+}
+
+/* admin blog page styles */
+
+.blog-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  /* background: red; */
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  box-shadow: 0 5px 8px rgb(188, 187, 187);
+  border-radius: 12px;
+}
+.card .image {
+  width: 100%;
+  max-height: 200px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.card .image img {
+  width: 100%;
+  object-fit: contain;
+}
+.card .contents {
+    padding: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.groupItems{
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
