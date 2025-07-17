@@ -6,13 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const authorInput = document.getElementById("author");
   const postList = document.getElementById("postList");
 const name = document.getElementById("authorname")
-name.innerHTML=loggedInUser.username;
+
   // Get loggedInUser or set default
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {
     username: "GuestAuthor",
   };
   authorInput.value = loggedInUser.username;
   authorInput.disabled = true;
+  name.textContent=loggedInUser.username;
 
   // Render a single post
   function renderPost(post) {
