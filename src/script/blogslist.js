@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const postForm = document.getElementById("post-image");
 
   let posts = JSON.parse(localStorage.getItem("posts")) || [];
-  let editIndex = null;
 
+  // RENDER FUNCTION
   window.renderPosts = function () {
     posts = JSON.parse(localStorage.getItem("posts")) || [];
     postList.innerHTML = "";
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     posts
       .slice()
       .reverse()
-      .forEach((post, index) => {
+      .forEach((post) => {
         const postDiv = document.createElement("div");
         postDiv.className = "post";
         postDiv.innerHTML = `
@@ -32,55 +32,56 @@ document.addEventListener("DOMContentLoaded", () => {
             <strong>${new Date(post.createdAt).toLocaleString()}</strong>
           </div>
           <div class="actions">
-            <button onclick="editPost(${posts.length - 1 - index})">Edit</button>
-            <button onclick="deletePost(${posts.length - 1 - index})">Delete</button>
+            <button onclick="editPost(${post.id})">Edit</button>
+            <button onclick="deletePost(${post.id})">Delete</button>
           </div>
         `;
         postList.appendChild(postDiv);
       });
   };
 
-  window.deletePost = function (index) {
-    posts.splice(index, 1);
+  // DELETE FUNCTION
+  window.deletePost = function (postId) {
+    posts = posts.filter(post => post.id !== postId);
     localStorage.setItem("posts", JSON.stringify(posts));
     renderPosts();
   };
 
-  window.editPost = function (index) {
-    const post = posts[index];
+  // EDIT FUNCTION
+  window.editPost = function (postId) {
+    const post = posts.find(p => p.id === postId);
+    if (!post) return;
+
     titleInput.value = post.title;
     descriptionInput.value = post.content;
     imageInput.value = post.imageUrl || "";
     authorInput.value = post.author;
-    editIndex = index;
 
     // Scroll up to the form
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    // Override submit behavior for edit
     postForm.onsubmit = function (e) {
       e.preventDefault();
 
-      post.title = titleInput.value.trim();
-      post.content = descriptionInput.value.trim();
-      post.imageUrl = imageInput.value.trim();
-      post.author = authorInput.value.trim();
-      post.createdAt = Date.now();
+      const updatedPost = {
+        ...post,
+        title: titleInput.value.trim(),
+        content: descriptionInput.value.trim(),
+        imageUrl: imageInput.value.trim(),
+        author: authorInput.value.trim(),
+        createdAt: Date.now(),
+      };
 
-      posts[index] = post;
+      posts = posts.map(p => (p.id === postId ? updatedPost : p));
       localStorage.setItem("posts", JSON.stringify(posts));
-
       renderPosts();
 
       postForm.reset();
-      authorInput.value = post.author;
-      editIndex = null;
-
-      // Restore normal post submit behavior
-      postForm.onsubmit = null;
+      authorInput.value = updatedPost.author;
+      postForm.onsubmit = null; // Restore original submit
     };
   };
 
-  // Initial render
+  // INITIAL RENDER
   renderPosts();
 });
