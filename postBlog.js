@@ -18,29 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const postDiv = document.createElement("div");
     postDiv.className = "post";
 
-    // Create image URL if file exists
-    let imageUrl = "";
-    if (post.imageFile) {
-      if (post.imageFile instanceof File) {
-        imageUrl = URL.createObjectURL(post.imageFile);
-      } else if (typeof post.imageFile === "string") {
-        imageUrl = post.imageFile;
-      }
-    }
-
     postDiv.innerHTML = `
       <h3>${post.title}</h3>
       <p>${post.content}</p>
       ${
-        imageUrl
-          ? `<img src="${imageUrl}" alt="Post Image" style="max-width: 200px;">`
+        post.imageUrl
+          ? `<a href="${post.imageUrl}" target="_blank"><img src="${post.imageUrl}" alt="Post image" class="postimage"></a>`
           : ""
       }
       <div class="post-meta">
         <span>By ${post.author}</span>
         <strong>${new Date(post.createdAt).toLocaleString()}</strong>
       </div>
-      <hr>
+    
     `;
 
     postList.prepend(postDiv);
@@ -53,12 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = titleInput.value.trim();
     const content = descriptionInput.value.trim();
     const author = authorInput.value.trim();
-    const imageFile = imageInput.value;
-    const img = document.createElement("img");
-    img.src = imageFile;
+    const imageUrl = imageInput.value.trim(); // Changed from imageFile to imageUrl for clarity
 
     if (!title || !content) {
-      // Removed author check since it's disabled
       alert("Please fill in all required fields.");
       return;
     }
@@ -67,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       id: Date.now(),
       title,
       content,
-      imageFile: imageFile || null, // Store the File object directly
+      imageUrl: imageUrl || null, // Store URL (or null if empty)
       author,
       createdAt: Date.now(),
     };
@@ -80,9 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Render immediately
     renderPost(newPost);
 
-    // Reset form
     postForm.reset();
-    authorInput.value = loggedInUser.username; // Reset author after form reset
+    authorInput.value = loggedInUser.username;
   });
 
   // Load existing posts on page load
