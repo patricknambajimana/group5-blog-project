@@ -1,4 +1,5 @@
 
+const userName = document.getElementById("UserName")
 function loginUser(event) {
   event.preventDefault();
   const username = document.getElementById('login-username').value.trim();
@@ -21,6 +22,7 @@ function loginUser(event) {
   setTimeout(() => {
     if (foundUser.role === 'admin') {
       window.location.href = 'AdminDashboard.html';
+      userName.innerHTML = foundUser.username
     } else {
       window.location.href = 'AuthorDashboard.html';
     }

@@ -17,7 +17,7 @@
 
 function nav() {
   const sidebar = document.querySelector(".nav");
-  sidebar.innerHTML = `<h1>Hi <span>Name</span></h1>
+  sidebar.innerHTML = `<h1>Hi <span id="UserName">Name</span></h1>
             <ul>
                 <li><a href="./AdminBlog.html">Blogs</a></li>
                 <li><a href="./Admin.html">Users List</a></li>
@@ -26,7 +26,7 @@ function nav() {
                 <div class="name-Abbrev">
                     <h2>TH</h2>
                 </div>
-                <a href="#">Logout</a>
+                <a href="./src/pages/login.html">Logout</a>
             </div>`;
 }
 nav();
