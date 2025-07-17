@@ -54,10 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
     authorInput.value = post.author;
     editIndex = index;
 
-    // Scroll up to the form
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    
 
-    // Override submit behavior for edit
+    
     postForm.onsubmit = function (e) {
       e.preventDefault();
 
