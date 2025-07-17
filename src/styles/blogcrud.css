@@ -124,7 +124,7 @@
   height: 50px;
   font-size: 20px;
 }
-.action-buttons {
+#action-buttons {
   font-weight: 700;
   padding: 8px 16px;
   border-radius: 8px;
