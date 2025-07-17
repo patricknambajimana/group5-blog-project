@@ -4,7 +4,7 @@ const form = document.getElementById('blogForm');
   const imageInput = document.getElementById('imageInput');
   const author = document.getElementById('author');
   const date = document.getElementById('date');
-  const blogList = document.getElementById('blogList');
+  const postList = document.getElementById('postList');
 
   let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
   let editIndex = null;
@@ -25,7 +25,7 @@ const form = document.getElementById('blogForm');
           <button onclick="deleteBlog(${index})">Delete</button>
         </div>
       `;
-      blogList.appendChild(blogDisplay);
+      postList.appendChild(blogDisplay);
     });
   }
 
