@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const imageInput = document.getElementById("imageInput");
   const authorInput = document.getElementById("author");
   const postList = document.getElementById("postList");
-const name = document.getElementById("authorname")
+  const name = document.getElementById("authorname");
 
   // Get loggedInUser or set default
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {
@@ -13,7 +13,7 @@ const name = document.getElementById("authorname")
   };
   authorInput.value = loggedInUser.username;
   authorInput.disabled = true;
-  name.textContent=loggedInUser.username;
+  name.textContent = loggedInUser.username;
 
   // Render a single post
   function renderPost(post) {

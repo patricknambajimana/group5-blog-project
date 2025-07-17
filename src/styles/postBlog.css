@@ -120,7 +120,7 @@
 
 #logout-button {
     position: relative;
-    left: 80em;
+    left: 200px;
     padding: 10px;
     width: 100px;
     font-size: 21px;
@@ -128,7 +128,8 @@
     border-style: none;
     background-color: rgb(247, 255, 251);
 }
-#logout-button:hover{
+
+#logout-button:hover {
     color: rgb(223, 21, 21);
     background-color: rgb(177, 178, 180);
 }
@@ -138,7 +139,8 @@ header {
     height: 100px;
     color: white;
 }
-#authorname{
+
+#authorname {
     font-size: 30px;
     text-transform: capitalize;
 }
